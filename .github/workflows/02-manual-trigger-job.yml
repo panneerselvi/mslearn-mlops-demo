@@ -9,22 +9,22 @@ on:
       - main
 
 jobs:
-  # dev:
-  #   environment: dev
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #   - name: Check out repo
-  #     uses: actions/checkout@main
-  #   - name: Install az ml extension
-  #     run: az extension add -n ml -y
-  #   - name: Azure login
-  #     uses: azure/login@v1
-  #     with:
-  #       creds: ${{secrets.AZURE_CREDENTIALS}}
-  #   - name: Trigger Job
-  #     run: az ml job create --file src/job.yml --resource-group ${{secrets.AZURE_ML_RG}} --workspace-name ${{secrets.AZURE_ML_WORKSPACE}} --stream
+  dev:
+    environment: dev
+    runs-on: ubuntu-latest
+    steps:
+    - name: Check out repo
+      uses: actions/checkout@main
+    - name: Install az ml extension
+      run: az extension add -n ml -y
+    - name: Azure login
+      uses: azure/login@v1
+      with:
+        creds: ${{secrets.AZURE_CREDENTIALS}}
+    - name: Trigger Job
+      run: az ml job create --file src/job.yml --resource-group ${{secrets.AZURE_ML_RG}} --workspace-name ${{secrets.AZURE_ML_WORKSPACE}} --stream
   prod:
-    # needs: dev
+    needs: dev
     environment: prod
     runs-on: ubuntu-latest
     steps:
