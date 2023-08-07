@@ -37,7 +37,7 @@ if __name__ == "__main__":
         type=AssetTypes.MLFLOW_MODEL,
         name="diabetes-mlops-model",
         description="MLflow model created from run path")
-    ml_client.models.create_or_update(mlflow_model)
+    ml_client.models.create_or_update(mlflow_model).result()
 
     # Define an endpoint name
     endpoint_name = "mlops-endpoint"
@@ -61,4 +61,4 @@ if __name__ == "__main__":
 
     ml_client.online_deployments.begin_create_or_update(
         deployment=blue_deployment
-    )
+    ).result()
