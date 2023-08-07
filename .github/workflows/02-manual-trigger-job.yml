@@ -44,10 +44,9 @@ jobs:
       run: |
         runid_value=$(awk '/RunId:/ {print $2; exit}' out.json) 
         echo "::set-output name=runid_value::$runid_value"
-    - name: Register Model
+    - name: Register and Deploy Model
       run: |
         echo "${{ steps.extract_runid.outputs.runid_value }}"
-        az ml model create --name diabetes-model --type mlflow_model --path 'runs:/${{ steps.extract_runid.outputs.runid_value }}/model/' --workspace-name ${{secrets.AZURE_ML_WORKSPACE}}
-
+        python src/deploy.py --run-id=${{ steps.extract_runid.outputs.runid_value }}
 
 
