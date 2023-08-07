@@ -37,9 +37,13 @@ jobs:
       with:
         creds: ${{secrets.AZURE_CREDENTIALS}}
     - name: Trigger Job
-      run: az ml job create --file src/job-prod.yml --resource-group ${{secrets.AZURE_ML_RG}} --workspace-name ${{secrets.AZURE_ML_WORKSPACE}} --stream
+      run: az ml job create --file src/job-prod.yml --resource-group ${{secrets.AZURE_ML_RG}} --workspace-name ${{secrets.AZURE_ML_WORKSPACE}} --stream -o json > out.json
+
+    - name: Parse and store runId
+      run: |
+        echo "run_id=$(sed -n 's/RunId: \(.*\)/\1/p' output.json)" >> $GITHUB_ENV
     - name: Register Model
-      run: az ml model create --name diabetes-model --type mlflow_model --workspace-name ${{secrets.AZURE_ML_WORKSPACE}}
+      run: az ml model create --name diabetes-model --type mlflow_model --path runs:/$run_id/model/ --workspace-name ${{secrets.AZURE_ML_WORKSPACE}}
 
 
 
