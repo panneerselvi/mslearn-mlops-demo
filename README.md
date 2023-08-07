@@ -4,7 +4,7 @@
 1. The below command used to create or register new dataset in Azure ML Workspace
 
     ```sh
-    az ml data create --file diabetes-dev-folder --path experimentation/data --resource-group sriram.m-rg --workspace-name mlopsdemo
+    az ml data create --name diabetes-dev-folder --path experimentation/data --resource-group sriram.m-rg --workspace-name mlopsdemo
     ```
 
 2. To create and run the new AML Job, use the following command in Azure CLI (V2)

@@ -1,0 +1,13 @@
+$schema: https://azuremlschemas.azureedge.net/latest/commandJob.schema.json
+code: model
+command: >-
+  python train.py --lr ${{inputs.reg_rate}} --training-data ${{inputs.training_data}}
+inputs:
+  training_data: 
+    type: uri_folder 
+    path: azureml:diabetes-prod-folder:1
+  reg_rate: 0.01
+environment: azureml:AzureML-sklearn-0.24-ubuntu18.04-py37-cpu@latest
+compute: aml-cluster
+experiment_name: diabetes-mlops-demo-exp-prod
+description: MLOps Demo Production
