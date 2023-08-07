@@ -4,6 +4,7 @@ from azure.ai.ml.entities import Model, ManagedOnlineEndpoint, ManagedOnlineDepl
 from azure.identity import DefaultAzureCredential
 from azure.ai.ml.constants import AssetTypes
 import argparse
+from datetime import datetime
 # Enter details of your AML workspace
 subscription_id = "358e870f-f037-490e-8ee3-6c17b7430d54"
 resource_group = "sriram.m-rg"
@@ -51,7 +52,7 @@ if __name__ == "__main__":
     # ml_client.online_endpoints.create_or_update(endpoint)
 
     blue_deployment = ManagedOnlineDeployment(
-        name="blue",
+        name='blue',
         endpoint_name=endpoint_name,
         model=mlflow_model,
         instance_type="Standard_D2as_v4",
@@ -60,4 +61,4 @@ if __name__ == "__main__":
 
     ml_client.online_deployments.begin_create_or_update(
         deployment=blue_deployment
-    )
+    ).result()
