@@ -41,7 +41,7 @@ jobs:
 
     - name: Parse and store runId
       run: |
-        echo "run_id=$(sed -n 's/RunId: \(.*\)/\1/p' output.json)" >> $GITHUB_ENV
+        echo "run_id=$(sed -n 's/RunId: \(.*\)/\1/p' out.json)" >> $GITHUB_ENV
     - name: Register Model
       run: az ml model create --name diabetes-model --type mlflow_model --path runs:/$run_id/model/ --workspace-name ${{secrets.AZURE_ML_WORKSPACE}}
 
