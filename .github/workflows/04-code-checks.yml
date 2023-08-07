@@ -1,7 +1,10 @@
 name: Code checks
 
 on:
-  workflow_dispatch:
+  pull_request:
+    branches:
+      - main
+
 
 jobs:
   job1:
