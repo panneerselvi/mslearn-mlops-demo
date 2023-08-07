@@ -49,7 +49,8 @@ if __name__ == "__main__":
         auth_mode="key",
         tags={"env": "prod"}
     )
-
+    ml_client.online_endpoints.begin_create_or_update(endpoint)
+    
     blue_deployment = ManagedOnlineDeployment(
         name="blue",
         endpoint_name=endpoint_name,
