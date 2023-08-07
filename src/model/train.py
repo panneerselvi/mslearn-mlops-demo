@@ -15,6 +15,7 @@ import mlflow
 def main(args):
     mlflow.autolog()
 
+    print("--------------------- Model training Starts -------------------")
     # read data
     df = get_csvs_df(args.training_data)
 
