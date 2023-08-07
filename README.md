@@ -20,3 +20,9 @@
                                 --scopes /subscriptions/358e870f-f037-490e-8ee3-6c17b7430d54/resourceGroups/sriram.m-rg \
                                 --sdk-auth
     ```
+    
+4. To register ML Models in AML Workspace, use the below command
+
+    ```sh
+    az ml model create --name diabetes-model --path runs:/<run-id>/model/ --type mlflow_model
+    ```
