@@ -24,5 +24,5 @@
 4. To register ML Models in AML Workspace, use the below command
 
     ```sh
-    az ml model create --name diabetes-model --path runs:/<run-id>/model/ --type mlflow_model
+    az ml model create --name diabetes-model --path runs:/<run-id>/model/ --type mlflow_model --workspace-name mlopsdemo
     ```
